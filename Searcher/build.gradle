@@ -12,6 +12,15 @@ run {
     }
 }
 
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.warrior.informationsearch.searcher.Searcher'
+    }
+    baseName = project.name + '-executable'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 task genParser(type: Exec) {
     println projectDir
     commandLine 'java', '-Xmx500M', '-cp', '/usr/local/lib/antlr-4.5-complete.jar', 'org.antlr.v4.Tool', 'Query.g4',
