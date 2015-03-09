@@ -1,0 +1,6 @@
+.idea/
+.gardle/
+*.iml
+*.class
+.DS_Store
+
