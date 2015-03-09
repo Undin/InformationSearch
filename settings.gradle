@@ -1,3 +1,4 @@
 rootProject.name = 'InformationSearch'
 
+include 'IndexConverter'
 
