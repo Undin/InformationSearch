@@ -39,6 +39,7 @@ public class Searcher {
         for (Integer docId : searchResult) {
             System.out.println(filePaths.get(docId));
             System.out.println(TitleParser.parse(filePaths.get(docId)));
+            System.out.println();
         }
     }
 }
