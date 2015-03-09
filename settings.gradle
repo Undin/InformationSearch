@@ -2,3 +2,4 @@ rootProject.name = 'InformationSearch'
 
 include 'IndexConverter'
 include 'Indexer'
+include 'Searcher'

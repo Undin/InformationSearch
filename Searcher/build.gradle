@@ -1,0 +1,28 @@
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = "com.warrior.informationsearch.searcher.Searcher"
+
+run {
+    if (project.hasProperty('appArgs')) {
+        args Eval.me(appArgs)
+    }
+}
+
+task genParser(type: Exec) {
+    println projectDir
+    commandLine 'java', '-Xmx500M', '-cp', '/usr/local/lib/antlr-4.5-complete.jar', 'org.antlr.v4.Tool', 'Query.g4',
+            '-o', "$projectDir/src/main/java/com/warrior/informationsearch/searcher/queryparser",
+            '-package', 'com.warrior.informationsearch.searcher.queryparser',
+            '-no-listener'
+}
+
+dependencies {
+    compile project(':IndexConverter')
+    compile 'org.antlr:antlr4-runtime:4.5'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
