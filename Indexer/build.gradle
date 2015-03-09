@@ -1,0 +1,18 @@
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = "com.warrior.informationsearch.indexer.Indexer"
+
+run {
+    if (project.hasProperty('appArgs')) {
+        args Eval.me(appArgs)
+    }
+}
+
+dependencies {
+    compile project(':IndexConverter')
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
