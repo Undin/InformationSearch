@@ -12,13 +12,13 @@ run {
     }
 }
 
-task fatJar(type: Jar) {
+jar {
     manifest {
         attributes 'Main-Class': 'com.warrior.informationsearch.indexer.Indexer'
     }
-    baseName = project.name + '-executable'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 dependencies {
