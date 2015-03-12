@@ -44,7 +44,7 @@ public class Parser extends DefaultHandler {
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         if (inBody) {
-            StringTokenizer tokenizer = new StringTokenizer(new String(ch, start, length), " \t\n\r,.()\"!?:;");
+            StringTokenizer tokenizer = new StringTokenizer(new String(ch, start, length), " \t\n\r,.()\"!?:;[]=");
             while (tokenizer.hasMoreTokens()) {
                 words.add(tokenizer.nextToken().toLowerCase());
             }
