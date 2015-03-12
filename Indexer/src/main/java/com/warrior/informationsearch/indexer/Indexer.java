@@ -11,14 +11,17 @@ import java.util.*;
 public class Indexer {
 
     public static final String OUTPUT_FILE_NAME = "inverted_index.xml";
+    public static long start;
 
     public static void main(String[] args) {
+        start = System.currentTimeMillis();
         if (args.length < 1) {
             System.err.println("Indexer requires path to documents");
             return;
         }
         File file = new File(args[0]);
         new Indexer().run(file);
+        System.out.println(System.currentTimeMillis() - start);
     }
 
     public void run(File rootFile) {
@@ -36,6 +39,7 @@ public class Indexer {
         }
         int terms = invertedIndex.size();
         System.out.format("tokens: %d, terms: %d\n", tokens, terms);
+        System.out.println(System.currentTimeMillis() - start);
         boolean successful = IndexConverter.indexToXml(OUTPUT_FILE_NAME, fileList, invertedIndex);
         if (successful) {
             System.out.println("index has written to " + OUTPUT_FILE_NAME);
