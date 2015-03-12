@@ -8,10 +8,7 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 
@@ -29,9 +26,9 @@ public class IndexConverter {
     public static final String ID = "id";
 
     public static boolean indexToXml(String filename, List<File> files, Map<String, List<Integer>> invertedIndex) {
-        try (PrintWriter writer = new PrintWriter(filename)) {
+        try (PrintWriter writer = new PrintWriter(filename, "UTF-8")) {
             XMLStreamWriter xmlWriter = XMLOutputFactory.newInstance().createXMLStreamWriter(writer);
-            xmlWriter.writeStartDocument();
+            xmlWriter.writeStartDocument("UTF-8", "1.0");
             xmlWriter.writeStartElement(INVERTED_INDEX);
             xmlWriter.writeStartElement(FILES);
             for (File file : files) {
@@ -57,7 +54,7 @@ public class IndexConverter {
             xmlWriter.writeEndDocument();
             xmlWriter.close();
 
-        } catch (FileNotFoundException | XMLStreamException e) {
+        } catch (FileNotFoundException | XMLStreamException  | UnsupportedEncodingException e) {
             e.printStackTrace();
             return false;
         }
