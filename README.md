@@ -1,13 +1,62 @@
-# Build
+# Environment #
+Java 7
 
-run './gradlew :module_name:jar'
+# Indexer #
+## Build ##
 
-Build creates executable jar in module_name/build/libs/ folder.
+```
+#!bash
+./gradlew :Indexer:jar
 
-# Run
+```
 
-run 'java -jar module_name/build/libs/module_name.jar args' where args are:
-* for Indexer: path_to_indexed_folder
-* for Searcher: path_to_index_file, search_query
+Build creates executable Indexer.jar  in Indexer/build/libs/ folder.
 
-module_name is Indexer or Searcher.
+## Run ##
+
+```
+#!bash
+java -jar Indexer/build/libs/Indexer.jar path_to_indexing_folder
+
+```
+
+# Searcher #
+## Build ##
+```
+#!bash
+./gradlew :Searcher:jar
+
+```
+
+Build creates executable Searcher.jar  in Searcher/build/libs/ folder.
+
+## Run ##
+
+```
+#!bash
+java -jar Searcher/build/libs/Searcher.jar path_to_index_file search_query
+
+```
+### Query ###
+Search query has next grammar:
+
+```
+#!antlr4
+
+expr : expr '|' expr ;
+expr : expr '&' expr ;
+expr : '(' expr ')' ;
+expr : WORD ;
+WORD : [a-zA-Z0-9]+ ;
+```
+
+All whitespace symbols are ignored.
+
+### Query example ###
+
+
+```
+#!bash
+
+European & (Community | Union)
+```
