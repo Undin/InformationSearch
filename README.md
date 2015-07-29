@@ -6,7 +6,6 @@ Java 7
 
 ```
 ./gradlew :Indexer:jar
-
 ```
 
 Build creates executable Indexer.jar  in Indexer/build/libs/ folder.
@@ -15,14 +14,12 @@ Build creates executable Indexer.jar  in Indexer/build/libs/ folder.
 
 ```
 java -jar Indexer/build/libs/Indexer.jar path_to_indexing_folder
-
 ```
 
 # Searcher #
 ## Build ##
 ```
 ./gradlew :Searcher:jar
-
 ```
 
 Build creates executable Searcher.jar  in Searcher/build/libs/ folder.
@@ -31,13 +28,11 @@ Build creates executable Searcher.jar  in Searcher/build/libs/ folder.
 
 ```
 java -jar Searcher/build/libs/Searcher.jar path_to_index_file search_query
-
 ```
 ### Query ###
 Search query has next grammar:
 
 ```
-
 expr : expr '|' expr ;
 expr : expr '&' expr ;
 expr : '(' expr ')' ;
@@ -51,6 +46,5 @@ All whitespace symbols are ignored.
 
 
 ```
-
 European & (Community | Union)
 ```
